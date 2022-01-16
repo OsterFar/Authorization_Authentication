@@ -16,16 +16,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("OsterAuth", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("UserList", "Index", "Users")</li>
+                        <li>@Html.ActionLink("RoleList", "Index", "Roles")</li>
+
+                    }
+
+
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@User.Identity.Name</li>
+                        <li> <h5>@User.Identity.Name </h5></li>
                         <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
                     }
                     else
