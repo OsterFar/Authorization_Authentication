@@ -6,7 +6,8 @@ using System.Web.Mvc;
 
 namespace UserAuth.Controllers
 {
-    [Authorize]
+    // As we have total 2 roles and we give access to all of them,it is nt neccessary to define roles here 
+    [Authorize(Roles = "Admin , client")] 
     public class HomeController : Controller
     {
         public ActionResult Index()

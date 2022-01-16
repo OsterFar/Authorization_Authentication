@@ -12,7 +12,7 @@ using UserAuth.Models;
 
 namespace UserAuth.Controllers
 {
-    [Authorize(Roles = "Client")]
+    [Authorize(Roles = "Admin")]
     public class RolesController : Controller
     {
         private UserAuthenticationContext db = new UserAuthenticationContext();
