@@ -24,6 +24,8 @@ namespace UserAuth.Controllers
         {
             if(Data == null) return View();
             //else 
+
+
             var success = db.Users.Any(P => P.Name == Data.Name && P.Password.Equals(Data.Password));
             if(success)
             {
@@ -37,6 +39,7 @@ namespace UserAuth.Controllers
         [Route("account/signup")]
         public ActionResult SignUp()
         {
+            ViewBag.message = "";
             return View();
 
         }
@@ -46,6 +49,13 @@ namespace UserAuth.Controllers
         {
             if (user == null) return View();
             //else 
+
+            if (user.Password.Length != 6)
+            {
+                ViewBag.message = "Password length should be greater than 6";
+                return View();
+            }
+            
             db.Users.Add(user);
             db.SaveChanges();
             return RedirectToAction("Login");
